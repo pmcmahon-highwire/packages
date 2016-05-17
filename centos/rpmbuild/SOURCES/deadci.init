@@ -10,7 +10,8 @@
 ### END INIT INFO
 
 dir="/var/lib/deadci"
-cmd="deadci"
+config="/etc/deadci/deadci.ini"
+cmd="deadci --config=$config --data-dir=$dir"
 user="deadci"
 
 name=`basename $0`
