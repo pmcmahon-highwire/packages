@@ -28,7 +28,7 @@ export GOPATH=%{_tmppath}/deadci-gopath
 cp -r vendor/* $GOPATH/src
 go build
 
-$pre
+%pre
 /usr/bin/getent group deadci || /usr/sbin/groupadd -r deadci
 /usr/bin/getent passwd deadci || /usr/sbin/useradd -r -d /var/lib/deadci -s /sbin/nologin deadci
 
@@ -38,9 +38,10 @@ rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT/%{_bindir}/
 mkdir -p $RPM_BUILD_ROOT/etc/deadci
 mkdir -p $RPM_BUILD_ROOT/var/lib/deadci
+mkdir -p $RPM_BUILD_ROOT/etc/init.d
 cp %{name}-%{version} $RPM_BUILD_ROOT/%{_bindir}/%{name}
 cp deadci.ini $RPM_BUILD_ROOT/etc/deadci
-%attr(4755, mysql, mysql) %{_bindir}/%{name}
+cp %{SOURCE1} $RPM_BUILD_ROOT/etc/init.d/deadci
 
 %post
 /sbin/chkconfig --add %{name}
@@ -59,7 +60,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,deadci,deadci,-)
 %doc README.md
-%attr(755, root, root) %{_initrddir}/deadci
+%attr(4755, deadci, deadci) %{_bindir}/%{name}
+%attr(755, root, root) /etc/init.d/deadci
 %dir /etc/deadci
 %config(noreplace) /etc/deadci/deadci.ini
 %dir /var/lib/deadci
