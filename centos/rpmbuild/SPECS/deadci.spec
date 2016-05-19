@@ -8,11 +8,12 @@ License:          GPLv3
 URL:              https://deadci.com/
 Requires(pre):    /usr/sbin/useradd, /usr/bin/getent
 Requires(postun): /usr/sbin/userdel
-Source0:          deadci-%{version}.tar.gz
-Source1:          deadci.init
+Source0:          https://github.com/phayes/packages/blob/master/centos/rpmbuild/SOURCES/%{name}-%{version}.tar.gz
+Source1:          https://github.com/phayes/packages/blob/master/centos/rpmbuild/SOURCES/deadci.init
 BuildRoot:        %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:  mercurial git golang
+BuildRequires:  mercurial git
+BuildRequires:  golang >= 1.5
 
 
 %description
