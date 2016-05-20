@@ -30,7 +30,6 @@ cp -r vendor/* $GOPATH/src
 go build
 
 %pre
-/usr/bin/getent group deadci || /usr/sbin/groupadd -r deadci
 /usr/bin/getent passwd deadci || /usr/sbin/useradd -r -d /var/lib/deadci -s /sbin/nologin deadci
 
 %install
