@@ -43,5 +43,5 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-* Fri Feb 19 2015 Patrick Hayes <patrick.d.hayes@gmail.com> - 1.0.0
+* Thu Feb 19 2015 Patrick Hayes <patrick.d.hayes@gmail.com> - 1.0.0
 - Initial version of the package
